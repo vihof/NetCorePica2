@@ -7,12 +7,19 @@ namespace WebApp1.Pages
     public class FormularioPage : PageModel
     {
         [BindProperty]
+        [Display(Name = "Name")]
         [Required(ErrorMessage = "Ingrese el nombre")]
         public string Name { get; set; }
-
-        [Required(ErrorMessage = "Ingrese el Email")]
+        
+        [BindProperty]
+        [Display(Name = "Email Address")]
+        [Required(ErrorMessage = "El Email es Requerido")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address.")]
         public string Email { get; set; }
+        [BindProperty]
+        [Display(Name = "Celular")]
         [Required(ErrorMessage = "Ingrese el numero de celular")]
+        [Range(0, short.MaxValue, ErrorMessage = "El valor {0} debe ser numérico.")]
         public string Celular { get; set; }
 
         public IActionResult OnGet()
